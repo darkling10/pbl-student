@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Attedance</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <% console.log(att_data) %> 
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        
+        <th>Add Attendance</th>
+        
+      </tr>
+
+      <% for ( let elem of att_data){ %>
+
+      <!-- today = mm + '/' + dd + '/' + yyyy -->
+      <tr>
+        <th><%= elem.name %></th>
+
+        <th><%= elem.rollno %></th>
+        <th><a href="/attendance/<%= elem.id %> ">Add Attendance</a> </th>
+      </tr>
+      <% } %>
+    </table>
+
+    <a href="/attendance/addstudent">Add Student</a>
+  </body>
+</html>
