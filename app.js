@@ -5,10 +5,12 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const Comp_student = require("./models/students");
 const Attendance = require("./models/attendance");
-const collectionName = 'Students'
+const collectionName = "Students";
 
 mongoose
-  .connect(`mongodb://localhost:27017/${collectionName}`, { useNewUrlParser: true })
+  .connect(`mongodb://localhost:27017/${collectionName}`, {
+    useNewUrlParser: true,
+  })
   .then(() => {
     console.log("Connection open");
   })
@@ -25,14 +27,14 @@ app.use(methodOverride("_method"));
 
 app.get("/", async (req, res) => {
   const stu_data = await Comp_student.find({}).sort({ rollno: 1 });
-  console.log(stu_data);
+  // console.log(stu_data);
 
   res.render("index.ejs", { stu_data });
 });
 
 app.get("/attendance", async (req, res) => {
-  const att_data = await Attendance.find({}).sort({"rollno":1});
-  console.log(att_data);
+  const att_data = await Attendance.find({}).sort({ rollno: 1 });
+  // console.log(att_data);
   res.render("attendanceList.ejs", { att_data });
 });
 
@@ -41,25 +43,25 @@ app.get("/attendance/addstudent", async (req, res) => {
   res.render("createNew.ejs");
 });
 
-app.post("/attendance", async(req, res) => {
+app.post("/attendance", async (req, res) => {
   // var dd = String(ex_date.getDate()).padStart(2, "0");
   // var mm = String(ex_date.getMonth() + 1).padStart(2, "0");
   // var yyyy = ex_date.getFullYear();
   // var today = dd + "/" + mm + "/" + yyyy;
 
-  const newStudent = new Attendance(req.body)
-  await newStudent.save()
-  console.log(req.body);
+  const newStudent = new Attendance(req.body);
+  await newStudent.save();
+  // console.log(req.body);
 
-  res.redirect('/attendance')
+  res.redirect("/attendance");
 });
 
 const ex_date = new Date();
 
-var dd = String(ex_date.getDate()).padStart(2, "0");
-var mm = String(ex_date.getMonth() + 1).padStart(2, "0");
-var yyyy = ex_date.getFullYear();
-var today = dd + "/" + mm + "/" + yyyy;
+let dd = String(ex_date.getDate()).padStart(2, "0");
+let mm = String(ex_date.getMonth() + 1).padStart(2, "0");
+let yyyy = ex_date.getFullYear();
+let today = dd + "/" + mm + "/" + yyyy;
 
 app.get("/attendance/:id", async (req, res) => {
   const { id } = req.params;
@@ -70,16 +72,17 @@ app.get("/attendance/:id", async (req, res) => {
 app.get("/attendance/:id/addattendance", async (req, res) => {
   const { id } = req.params;
   const student = await Attendance.findById(id);
-  for ( key in student){
-    console.log(key)
+  for (key in student) {
+    console.log(key);
   }
+  console.log(student)
   res.render("addAttendance.ejs", { student });
 });
 
 app.put("/attendance/:id", async (req, res) => {
   const { id } = req.params;
-  
-  console.log(req.body);
+
+  // console.log(req.body);
   const student = await Attendance.findByIdAndUpdate(
     id,
     { $set: { [req.body.date]: req.body.attendance } },
@@ -89,13 +92,26 @@ app.put("/attendance/:id", async (req, res) => {
   res.redirect(`/attendance/${student._id}`);
 });
 
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
 
-app.get('/login',(req,res)=>{
-  res.render()
-})
+app.put("/login", async (req, res) => {
+  // console.log(req.body)
+  const checkName = req.body.name;
+  const checkPassword = req.body.rollno;
+  const student = await Attendance.find({ name: checkName });
+  const pass = student[0]
+  console.log(student);
+  const id = student[0]._id.valueOf();
+  
+  if (student[0].name === checkName && student[0].rollno === checkPassword) {
+    res.redirect(`http://localhost:5500/attendance/${id}`);
+  } else {
+    res.redirect("/login");
+  }
+});
 
 app.listen(5500, () => {
   console.log("Listening on port 5500");
 });
-
-
