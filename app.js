@@ -112,7 +112,9 @@ app.get("/register", async (req, res) => {
 app.post("/register", async (req, res) => {
   console.log(req.body);
   var students = await Attendance.find({}).sort({ rollno: 1 });
-  for (let i=0;i<5;i++) {
+  var limit = await Attendance.count()
+  console.log(limit)
+  for (let i=0;i<limit ;i++) {
     let cstu = await Attendance.findByIdAndUpdate({ _id: students[i]._id },{
       $set:{ [req.body.date]: req.body.present[i] }
     });
