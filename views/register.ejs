@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Register</title>
+  </head>
+  <body>
+    <form action="/register" method="post">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Attendance Status</th>
+        </tr>
+        <% for ( let elem of att_data){ %>
+
+        <tr>
+          <th>
+            <label for="name"></label>
+            <input
+              type="text"
+              name="name"
+              id=""
+              value="<%= elem.name %> "
+              disabled="yes"
+            />
+          </th>
+          <th>
+            <label for="rollno"></label>
+            <input
+              type="text"
+              id="rollno"
+              name="rollno"
+              value="<%= elem.rollno %>"
+              disabled="yes"
+            />
+          </th>
+
+          <th>
+            <select name="present" id="">
+              <option value="P">Present</option>
+              <option value="A">Absent</option>
+            </select>
+          </th>
+        </tr>
+        <% } %>
+      </table>
+      <label>
+          <input type="date" name="date">
+      </label>
+      <button>Submit</button>
+    </form>
+    <a href="/attendance">Attendance</a>
+  </body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>Attedance</title>
     <style>
       table {
@@ -27,27 +27,28 @@
   </head>
   <body>
     <table>
-      <% console.log(att_data) %> 
       <tr>
-        <th>Name</th>
         <th>Roll No</th>
-        
-        <th>Add Attendance</th>
-        
+        <th>Name</th>
+        <% for( let index = 0; index < 30; index++ ) { %>
+        <th><%= index+1 %></th>
+        <% } %>
       </tr>
 
       <% for ( let elem of att_data){ %>
-
-      <!-- today = mm + '/' + dd + '/' + yyyy -->
       <tr>
-        <th><%= elem.name %></th>
-
         <th><%= elem.rollno %></th>
-        <th><a href="/attendance/<%= elem.id %> ">Add Attendance</a> </th>
+        <th><%= elem.name %></th>
+        <% for( let index = 0; index < 32; index++ ) { %>
+          
+          <%    res=(index<10) ? elem[`2022-03-0${index+1}`]: elem[`2022-03-${index+1}`]%>
+            <th><%= res %> </th>
+
+        <% } %>
       </tr>
       <% } %>
     </table>
-
+    <a href="/register">Register</a>
     <a href="/attendance/addstudent">Add Student</a>
   </body>
 </html>

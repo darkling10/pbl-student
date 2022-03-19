@@ -1,3 +1,5 @@
+// noinspection JSVoidFunctionReturnValueUsed
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -34,21 +36,14 @@ app.get("/", async (req, res) => {
 
 app.get("/attendance", async (req, res) => {
   const att_data = await Attendance.find({}).sort({ rollno: 1 });
-  // console.log(att_data);
   res.render("attendanceList.ejs", { att_data });
 });
 
 app.get("/attendance/addstudent", async (req, res) => {
-  // const att_data = await Attendance.find({});
   res.render("createNew.ejs");
 });
 
 app.post("/attendance", async (req, res) => {
-  // var dd = String(ex_date.getDate()).padStart(2, "0");
-  // var mm = String(ex_date.getMonth() + 1).padStart(2, "0");
-  // var yyyy = ex_date.getFullYear();
-  // var today = dd + "/" + mm + "/" + yyyy;
-
   const newStudent = new Attendance(req.body);
   await newStudent.save();
   // console.log(req.body);
@@ -56,12 +51,11 @@ app.post("/attendance", async (req, res) => {
   res.redirect("/attendance");
 });
 
-const ex_date = new Date();
-
-let dd = String(ex_date.getDate()).padStart(2, "0");
-let mm = String(ex_date.getMonth() + 1).padStart(2, "0");
-let yyyy = ex_date.getFullYear();
-let today = dd + "/" + mm + "/" + yyyy;
+// const ex_date = new Date();
+// let dd = String(ex_date.getDate()).padStart(2, "0");
+// let mm = String(ex_date.getMonth() + 1).padStart(2, "0");
+// let yyyy = ex_date.getFullYear();
+// let today = dd + "/" + mm + "/" + yyyy;
 
 app.get("/attendance/:id", async (req, res) => {
   const { id } = req.params;
@@ -75,7 +69,7 @@ app.get("/attendance/:id/addattendance", async (req, res) => {
   for (key in student) {
     console.log(key);
   }
-  console.log(student)
+  console.log(student);
   res.render("addAttendance.ejs", { student });
 });
 
@@ -97,19 +91,34 @@ app.get("/login", (req, res) => {
 });
 
 app.put("/login", async (req, res) => {
-  // console.log(req.body)
   const checkName = req.body.name;
   const checkPassword = req.body.rollno;
   const student = await Attendance.find({ name: checkName });
-  const pass = student[0]
   console.log(student);
   const id = student[0]._id.valueOf();
-  
+
   if (student[0].name === checkName && student[0].rollno === checkPassword) {
     res.redirect(`http://localhost:5500/attendance/${id}`);
   } else {
     res.redirect("/login");
   }
+});
+
+app.get("/register", async (req, res) => {
+  const att_data = await Attendance.find({}).sort({ rollno: 1 });
+  res.render("register.ejs", { att_data });
+});
+
+app.post("/register", async (req, res) => {
+  console.log(req.body);
+  var students = await Attendance.find({}).sort({ rollno: 1 });
+  for (let i=0;i<5;i++) {
+    let cstu = await Attendance.findByIdAndUpdate({ _id: students[i]._id },{
+      $set:{ [req.body.date]: req.body.present[i] }
+    });
+    
+  }
+  res.redirect("/register");
 });
 
 app.listen(5500, () => {
