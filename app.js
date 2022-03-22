@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const Comp_student = require("./models/students");
 const Attendance = require("./models/attendance");
 const collectionName = "Students";
+const teacherRoute = require('./router/teacherRoute')
 
 mongoose
   .connect(`mongodb://localhost:27017/${collectionName}`, {
@@ -122,6 +123,8 @@ app.post("/register", async (req, res) => {
   }
   res.redirect("/register");
 });
+
+app.use('/teacher',teacherRoute)
 
 app.listen(5500, () => {
   console.log("Listening on port 5500");
