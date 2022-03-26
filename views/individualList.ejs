@@ -38,17 +38,17 @@
             <th>Status </th>
         
         </tr>
-        <% for( let index = 23; index < 28; index++ ) { %>
+        <% for( let index = 1; index < 30; index++ ) { %>
             <tr>
                      
-                <th><%= `2022-02-${index}` %> </th>
-                <th><%= student[`2022-02-${index}`] %> </th>
+                <th><%= `${index}-${data.att_status}-2022` %> </th>
+                <th><%= student[`2022-${data.att_status}-${index}`] %> </th>
 
             </tr>
         <% } %>
         
     </table>
-    <a href="/attendance/<%= student._id %>/addattendance ">Add Attendance</a>
+    
     <a href="/attendance ">Home</a>
   </body>
 </html>

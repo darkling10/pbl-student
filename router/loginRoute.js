@@ -15,7 +15,7 @@ route.put("/", async (req, res) => {
   const id = student[0]._id.valueOf();
 
   if (student[0].name === checkName && student[0].rollno === checkPassword) {
-    res.redirect(`http://localhost:5500/attendance/${id}`);
+    res.redirect(`/attendance/${id}`);
   } else {
     res.redirect("/login");
   }
