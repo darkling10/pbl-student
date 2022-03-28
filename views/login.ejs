@@ -10,18 +10,32 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    
     <title>Document</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2 class="login">Login</h2>
     <form action="/login?_method=PUT" method="post">
-        <label for="name">Enter Name </label>
-      <input type="text" name="name" id="" placeholder="Student Name" />
+      <label for="category">Enter Your Role </label>
+      <select name="category" aria-label="Default select example">
+        
+        <option value="1">Student</option>
+        <option value="2">Teacher</option>
+        <option value="3">Admin</option>
+      </select>
 
+      <label for="name">Enter Name </label>
+      <input type="text" name="name" id="name" placeholder="Student Name" />
+      
       <label for="rollno">Password:</label>
-      <input type="password" id="rollno" name="rollno" />
+      <input type="password" id="rollno" name="rollno"/>
 
       <button type="submit button" class="btn btn-success">Check</button>
     </form>
+    <% if (error) { %>
+     <h2>Error finding the student</h2>
+      <% } %>
+     
 </body>
+<script src="../public/js/login.js"></script>
 </html>

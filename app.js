@@ -10,8 +10,9 @@ const Attendance = require("./models/attendance");
 const collectionName = "Students";
 const teacherRoute = require("./router/teacherRoute");
 const attendanceRoute = require("./router/attendanceRoute");
-const loginRoute = require('./router/loginRoute')
-const catalogueRoute = require('./router/catalogueRoute')
+const loginRoute = require("./router/loginRoute");
+const catalogueRoute = require("./router/catalogueRoute");
+
 
 mongoose
   .connect(`mongodb://localhost:27017/${collectionName}`, {
@@ -25,6 +26,7 @@ mongoose
     console.log(err);
   });
 
+app.use("/public", express.static('./public/'));
 app.set("views engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
@@ -42,7 +44,7 @@ app.get("/", async (req, res) => {
   res.render("index.ejs", { stu_data });
 });
 
-
-app.listen(5500, () => {
-  console.log("Listening on port 5500");
+app.listen(5500, () => {  console.log("Listening on port 5500");
 });
+
+//
