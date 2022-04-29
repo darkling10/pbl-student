@@ -39,10 +39,14 @@ app.use("/teacher", teacherRoute);
 app.use("/login", loginRoute);
 app.use("/catalogue", catalogueRoute);
 
-app.get("/", async (req, res) => {
-  const stu_data = await Comp_student.find({}).sort({ rollno: 1 });
-  res.render("index.ejs", { stu_data });
-});
+// app.get("/", async (req, res) => {
+//   const stu_data = await Comp_student.find({}).sort({ rollno: 1 });
+//   res.render("index.ejs", { stu_data });
+// });
+
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname+'/login.html')
+})
 
 app.listen(5500, () => {  console.log("Listening on port 5500");
 });
