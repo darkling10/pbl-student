@@ -12,6 +12,7 @@ const teacherRoute = require("./router/teacherRoute");
 const attendanceRoute = require("./router/attendanceRoute");
 const loginRoute = require("./router/loginRoute");
 const catalogueRoute = require("./router/catalogueRoute");
+const studentRoute = require('./router/studentRoute')
 
 
 mongoose
@@ -38,6 +39,7 @@ app.use("/attendance", attendanceRoute);
 app.use("/teacher", teacherRoute);
 app.use("/login", loginRoute);
 app.use("/catalogue", catalogueRoute);
+app.use("/student",studentRoute)
 
 // app.get("/", async (req, res) => {
 //   const stu_data = await Comp_student.find({}).sort({ rollno: 1 });

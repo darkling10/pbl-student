@@ -1,4 +1,5 @@
 const express = require("express");
+const { append } = require("express/lib/response");
 const route = express.Router();
 
 const Attendance = require("../models/attendance");
@@ -21,7 +22,8 @@ route.put("/", async (req, res) => {
     const student = await Attendance.find({ name: checkName });
     const id = student[0]._id.valueOf();
     if (student[0].name === checkName && student[0].rollno === checkPassword) {
-      res.redirect(`/attendance/${id}`);
+      res.redirect(`/student/${id}`);
+      // res.render('./bootstrap/index.ejs',{student})
     } else {
       check = true;
       res.render("login.ejs", { error: check });
@@ -45,5 +47,7 @@ route.put("/", async (req, res) => {
     }
   }
 });
+
+
 
 module.exports = route;
