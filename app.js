@@ -47,7 +47,7 @@ app.use("/student",studentRoute)
 // });
 
 app.get('/',(req,res)=>{
-  res.sendFile(__dirname+'/login.html')
+  res.sendFile(__dirname+'/index.html')
 })
 
 
