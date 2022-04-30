@@ -7,6 +7,7 @@ const Teacher = require("../models/teacher");
 
 let check = false;
 
+
 route.get("/", (req, res) => {
   res.render("login.ejs", { error: check });
 });
@@ -31,14 +32,15 @@ route.put("/", async (req, res) => {
   }
 
   if (req.body.category === "2") {
-    console.log(req.body)
     const checkPassword = req.body.rollno;
     const teacher = await Teacher.find({ name: checkName });
     const id = teacher[0]._id.valueOf();
+    // console.log(id)
     if(teacher[0].name === checkName || teacher[0].password===checkPassword){
-      
       const att_data = await Attendance.find({}).sort({ rollno:1 });
-      res.render("./catalogue/catalogue.ejs", { att_data });
+      res.render("./bootstrap/teacherdash.ejs", { att_data,teacher });
+      // res.redirect(`/teacher/${id}`)
+
       
       console.log(teacher)
     }else{

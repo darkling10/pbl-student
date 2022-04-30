@@ -1,24 +1,32 @@
-const express = require('express')
-const route = express.Router()
-const Teacher = require('../models/teacher')
+const express = require("express");
+const Attendance = require("../models/attendance");
+const route = express.Router();
+const Teacher = require("../models/teacher");
 
-route.get('/',async(req,res)=>{
-    const teacher_data = await Teacher.find({})
-    res.render("./teacher/teacherdata.ejs" ,{teacher_data})
-})
+route.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const teacher = await Teacher.findById({ id });
+  const att_data = await Attendance.find({}).sort({ rollno: 1 });
+  res.render("./bootstrap/teacherdash.ejs", { teacher ,att_data});
+});
 
-route.get('/create',(req,res)=>{
-    res.render('./teacher/teachercreate.ejs')
-})
+route.get("/create", (req, res) => {
+  res.render("./teacher/teachercreate.ejs");
+});
 
-route.post('/',async (req,res)=>{
-    console.log(req.body)
+route.get("/:id/profile", async (req, res) => {
+  const { id } = req.params;
+  const teacher = await Teacher.findById(id);
+  res.render("./bootstrap/profile.ejs", { teacher });
+});
 
-    const newTeach = new Teacher(req.body)
-    await newTeach.save()
+route.post("/", async (req, res) => {
+  console.log(req.body);
 
-    res.redirect('/teacher')
-})
+  const newTeach = new Teacher(req.body);
+  await newTeach.save();
 
+  res.redirect("/teacher");
+});
 
-module.exports = route
+module.exports = route;

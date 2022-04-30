@@ -16,7 +16,7 @@ const studentRoute = require('./router/studentRoute')
 
 
 mongoose
-  .connect(`mongodb://localhost:27017/${collectionName}`, {
+  .connect(`mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -49,6 +49,8 @@ app.use("/student",studentRoute)
 app.get('/',(req,res)=>{
   res.sendFile(__dirname+'/login.html')
 })
+
+
 
 app.listen(5500, () => {  console.log("Listening on port 5500");
 });
