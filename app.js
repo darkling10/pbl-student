@@ -17,7 +17,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const port = process.env.PORT || 5500
+const PORT = process.env.PORT || 5500
 
 // mongodb://localhost:27017/${collectionName}
 // mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
@@ -59,7 +59,7 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(port, () => {  console.log("Listening on port 5500");
+app.listen(PORT, () => {  console.log("Listening on port ");
 });
 
 //
