@@ -12,6 +12,10 @@ const attendanceSchema = new mongoose.Schema({
     prn:{
         type:String,
         required:true
+    },
+    username:{
+        type:String,
+        required:true
     }},{
         strict:false
     }
