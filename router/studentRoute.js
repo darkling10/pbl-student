@@ -8,8 +8,8 @@ let student
 route.get('/:id',async(req,res)=>{
     const { id } = req.params;
   student = await Attendance.findById(id);
-  studentData = student
-  console.log(studentData.name)
+  // studentData = student
+  // console.log(studentData.name)
   res.render("./bootstrap/index.ejs", { student });
 })
 

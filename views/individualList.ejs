@@ -42,7 +42,9 @@
             <tr>
                      
                 <th><%= `${index}-${data.att_status}-2022` %> </th>
-                <th><%= student[`2022-${data.att_status}-${index}`] %> </th>
+                <% res=(index<10) ? student[`2022-${data.att_status}-0${index}`]: student[`2022-${data.att_status}-${index}`] %> 
+                <% console.log(res) %> 
+                <th><%= res %> </th>
 
             </tr>
         <% } %>
