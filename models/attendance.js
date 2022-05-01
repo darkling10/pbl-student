@@ -8,9 +8,14 @@ const attendanceSchema = new mongoose.Schema({
     rollno:{
         type:String,
         required:true
+    },
+    prn:{
+        type:String,
+        required:true
     }},{
         strict:false
     }
+
     // present:{
     //     type:String,
     //     required:true
