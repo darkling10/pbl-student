@@ -16,7 +16,7 @@ const studentRoute = require('./router/studentRoute')
 
 
 mongoose
-  .connect(`mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+  .connect(`mongodb://localhost:27017/${collectionName}`, {
     useNewUrlParser: true,
   })
   .then(() => {
