@@ -20,9 +20,9 @@ route.put("/", async (req, res) => {
 
   if (req.body.category === "1") {
     const checkPassword = req.body.rollno;
-    const student = await Attendance.find({ name: checkName });
+    const student = await Attendance.find({ username: checkName });
     const id = student[0]._id.valueOf();
-    if (student[0].name === checkName && student[0].rollno === checkPassword) {
+    if (student[0].username === checkName && student[0].rollno === checkPassword) {
       res.redirect(`/student/${id}`);
       // res.render('./bootstrap/index.ejs',{student})
     } else {
