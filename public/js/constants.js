@@ -33,6 +33,7 @@ const prompts = [
   [
     "how can I reset my passwod?",
     "how to avail Forgot password",
+    "reset password",
     "Whom to contact to reset my password?",
   ],
   //8
