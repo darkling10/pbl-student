@@ -1,80 +1,123 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
     <title>Login - Brand</title>
-    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="/public/assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="/public/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="/public/assets/fonts/fontawesome5-overrides.min.css">
+    <link
+      rel="stylesheet"
+      href="/public/assets/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    />
+    <link
+      rel="stylesheet"
+      href="/public/assets/fonts/fontawesome-all.min.css"
+    />
+    <link rel="stylesheet" href="/public/assets/fonts/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="/public/assets/fonts/fontawesome5-overrides.min.css"
+    />
     <style>
-        
-        .form-control
-        {
-            padding: 0.85rem .75rem;
-            margin-bottom: 2rem;
-            border-radius: 1.75rem
-        }
+      .form-control {
+        padding: 0.85rem 0.75rem;
+        margin-bottom: 2rem;
+        border-radius: 1.75rem;
+      }
 
-        .bg
-        {
-            background-image: url(/assets/img/IMG-20220322-WA0001-01.jpeg);
-            background-repeat: no-repeat;
-            background-size: cover;
+      .bg {
+        background-image: url(/assets/img/IMG-20220322-WA0001-01.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
 
-            /* filter: blur(5px); */
-        }
-        
+        /* filter: blur(5px); */
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg">
+  <body class="bg">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10 mt-5">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row justify-content-center">
-                         
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
-                                    </div>
-                                    <form action="/login?_method=PUT" method="post">
-                                        
-                                        <div class="mb-3">
-                                           
-                                            <select class="form-control border-secondary" name="category" id="login">
-                                              <option value="1">Student</option>
-                                              <option value="2">Teacher</option>
-                                              <option value="3">Adminstrator</option>
-                                            </select>
-                                            <input class="form-control form-control-user bor border-secondary"  type="name" id="name" aria-describedby="emailHelp" placeholder="Enter your name..." name="name"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user border-secondary" type="password" id="exampleInputPassword" placeholder="Password" name="rollno"></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
-                                            </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
-                                        <hr>
-                                        <hr>
-                                    </form>
-                     
-                                </div>
-                            </div>
-                        </div>
+      <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10 mt-5">
+          <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+              <div class="row justify-content-center">
+                <div class="col-lg-6">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h4 class="text-dark mb-4">Welcome Back!</h4>
                     </div>
+                    <form action="/login?_method=PUT" method="post">
+                      <div class="mb-3">
+                        <select
+                          class="form-control border-secondary"
+                          name="category"
+                          id="login"
+                        >
+                          <option value="1">Student</option>
+                          <option value="2">Teacher</option>
+                          <option value="3">Adminstrator</option>
+                        </select>
+                        <input
+                          class="form-control form-control-user bor border-secondary"
+                          type="name"
+                          id="name"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter your name..."
+                          name="name"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <input
+                          class="form-control form-control-user border-secondary"
+                          type="password"
+                          id="exampleInputPassword"
+                          placeholder="Password"
+                          name="rollno"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <div class="custom-control custom-checkbox small">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input custom-control-input"
+                              type="checkbox"
+                              id="formCheck-1"
+                            /><label
+                              class="form-check-label custom-control-label"
+                              for="formCheck-1"
+                              >Remember Me</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        class="btn btn-primary d-block btn-user w-100"
+                        type="submit"
+                        style="
+                          border-radius: 50px !important;
+                          padding: 10px !important;
+                        "
+                      >
+                        Login
+                      </button>
+                    </form>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/public/assets/js/bs-init.js"></script>
     <script src="/public/assets/js/theme.js"></script>
-</body>
-
+  </body>
 </html>
