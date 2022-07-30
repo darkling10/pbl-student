@@ -48,17 +48,6 @@ app.use("/login", loginRoute);
 app.use("/catalogue", catalogueRoute);
 app.use("/student",studentRoute)
 
-// app.get("/", async (req, res) => {
-//   const stu_data = await Comp_student.find({}).sort({ rollno: 1 });
-//   res.render("index.ejs", { stu_data });
-// });
-
-app.get('/',(req,res)=>{
-  res.sendFile(__dirname+'/index.html')
-})
-
-
-
 app.listen(PORT, () => {  console.log("Listening on port ");
 });
 
