@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5500
 // mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 mongoose
-  .connect(`mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+  .connect(`mongodb+srv://abbas:${process.enc.PASSWORD}@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -47,6 +47,10 @@ app.use("/teacher", teacherRoute);
 app.use("/login", loginRoute);
 app.use("/catalogue", catalogueRoute);
 app.use("/student",studentRoute)
+
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname+'/index.html')
+})
 
 app.listen(PORT, () => {  console.log("Listening on port ");
 });
