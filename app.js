@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5500
 // mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 mongoose
-  .connect(`mongodb+srv://abbas:${process.enc.PASSWORD}@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+  .connect(`mongodb+srv://abbas:${process.env.PASSWORD}@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
   })
   .then(() => {
