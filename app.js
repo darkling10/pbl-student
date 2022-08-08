@@ -19,9 +19,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5500
 
-// mongodb://localhost:27017/${collectionName}
-// mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-
+//MongoDB connection
 mongoose
   .connect(`mongodb+srv://abbas:${process.env.PASSWORD}@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -34,11 +32,14 @@ mongoose
     console.log(err);
   });
 
+
+// Setting View Engine and paths for Local,Views and Public folder
 app.use("/public", express.static('./public/'));
 app.set("views engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
-
 app.use(express.urlencoded({ extended: true }));
+
+//API method override
 app.use(methodOverride("_method"));
 
 //Routes
@@ -48,11 +49,13 @@ app.use("/login", loginRoute);
 app.use("/catalogue", catalogueRoute);
 app.use("/student",studentRoute)
 
+//Home Page Route
 app.get('/',(req,res)=>{
   res.sendFile(__dirname+'/index.html')
 })
 
+
 app.listen(PORT, () => {  console.log("Listening on port ");
 });
 
-//
+

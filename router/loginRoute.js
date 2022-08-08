@@ -7,16 +7,18 @@ const Teacher = require("../models/teacher");
 
 let check = false;
 
-
+//GET : Display Login Page
+//EJS used: Login.ejs
 route.get("/", (req, res) => {
   res.render("login.ejs", { error: check });
 });
 
+
+//PUT : Validating attendance
+//EJS rendered : teacherdash.ejs,Login.ejs
 route.put("/", async (req, res) => {
   const checkName = req.body.name;
-  
-
-  console.log("cast");
+  // console.log("cast");
 
   if (req.body.category === "1") {
     const checkPassword = req.body.rollno;
