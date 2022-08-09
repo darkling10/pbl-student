@@ -1,11 +1,16 @@
 const express = require("express");
 const { append } = require("express/lib/response");
 const route = express.Router();
-
+const bcrypt = require("bcrypt")
 const Attendance = require("../models/attendance");
 const Teacher = require("../models/teacher");
 
 let check = false;
+
+const comparePassword = async(password,checkPwd)=>{
+  const checkPassword = await bcrypt.compare(password,checkPwd)
+  return checkPassword
+}
 
 //GET : Display Login Page
 //EJS used: Login.ejs
@@ -21,10 +26,14 @@ route.put("/", async (req, res) => {
   // console.log("cast");
 
   if (req.body.category === "1") {
-    const checkPassword = req.body.rollno;
+    const checkPassword = req.body.password;
     const student = await Attendance.find({ username: checkName });
+
     const id = student[0]._id.valueOf();
-    if (student[0].username === checkName && student[0].rollno === checkPassword) {
+    const pwd = await comparePassword(checkPassword,student[0].password)
+    
+
+    if (student[0].username === checkName && pwd) {
       res.redirect(`/student/${id}`);
       // res.render('./bootstrap/index.ejs',{student})
     } else {

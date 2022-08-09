@@ -5,8 +5,8 @@ const bcrypt = require("bcrypt");
 const Attendance = require("../models/attendance");
 
 const securePassword = async (password) => {
-  const savePwd = await bcrypt.hash(password, 10);
-  return savePwd;
+  return await bcrypt.hash(password, 10);
+  
 };
 
 //GET : Display Attendance
@@ -36,13 +36,17 @@ route.post("/upstudent", async (req, res) => {
     let cstu = await Attendance.findByIdAndUpdate(
       { _id: student[0]._id },
       {
-        $set: { password: savePwd, confirmpassword: savePwd },
+        $set: {
+          password: savePwd,
+          confirmpassword: savePwd,
+          username: req.body.username,
+        },
       }
     );
 
-    res.redirect(`/attendance`)
-  }else{
-    res.redirect(`/attendance/upstudent`)
+    res.redirect(`/attendance`);
+  } else {
+    res.redirect(`/attendance/upstudent`);
   }
 });
 
