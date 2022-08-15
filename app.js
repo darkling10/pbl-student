@@ -15,6 +15,7 @@ const catalogueRoute = require("./router/catalogueRoute");
 const studentRoute = require('./router/studentRoute')
 const dotenv = require('dotenv');
 
+//Enviornment Variable configured
 dotenv.config();
 
 const PORT = process.env.PORT || 5500
