@@ -32,25 +32,18 @@
   </head>
   <body>
     <table>
-        <tr>
-        
-            <th><%= student.name %></th>
-            <th>Status </th>
-        
-        </tr>
-        <% for( let index = 1; index < 30; index++ ) { %>
-            <tr>
-                     
-                <th><%= `${index}-${data.att_status}-2022` %> </th>
-                <% res=(index<10) ? student[`2022-${data.att_status}-0${index}`]: student[`2022-${data.att_status}-${index}`] %> 
-                <% console.log(res) %> 
-                <th><%= res %> </th>
-
-            </tr>
-        <% } %>
-        
+      <tr>
+        <th><%= student.name %></th>
+        <th>Status</th>
+      </tr>
+      <% for( let index = 1; index < 32; index++ ) { %>
+      <tr>
+        <th><%= `${index}-${data.att_status}-2022` %></th>
+        <% res=(index<10) ? student[`2022-${data.att_status}-0${index}`]:
+        student[`2022-${data.att_status}-${index}`] %> <% console.log(res) %>
+        <th><%= res %></th>
+      </tr>
+      <% } %>
     </table>
-    
-    
   </body>
 </html>
